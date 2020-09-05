@@ -4,8 +4,8 @@ import Home from './Home'
 
 const App = () => (
     <div>
-        <Home/>
         <Header/>
+        <Home/>  
     </div>
 )
 
