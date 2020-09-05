@@ -47,7 +47,6 @@ const StyledTMDBLogo = styled.img`
 const Header = () => (
     <StyledHeader>
         <div className="header-content">
-            xsxsx
             <StyledRMDBLogo src={RMDBLogo} alt="rmdb-logo"/>
             <StyledTMDBLogo src={TMDBLogo} alt="tmdb-logo"/>
         </div>
