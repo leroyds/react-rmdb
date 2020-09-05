@@ -12,11 +12,13 @@ import Spinner from './elements/Spinner';
 // import custom hooks
 import {useHomeFetch} from './Hooks/useHomeFetch';
 
+import NoImage from './images/no_image.jpg'
+
 
 const Home = () => {
 
     const [{state, loading, error}, fetchMovies] = useHomeFetch();
-    console.log(state.heroImage);
+    const[searchTerm, setSearchTerm] = useState();
 
     if(error) return <div>something went wrong</div>
     if(!state.movies[0]) return <Spinner/>
@@ -31,8 +33,24 @@ const Home = () => {
 
             />
             <SearchBar/>
-            <Grid/>
-            <MovieThumb/>
+            <Grid header={searchTerm? 'Search Results':'Popular Movies'}>
+                {state.movies.map(movie=>(
+                    <MovieThumb
+                        key={movie.id}
+                        clickable
+                        image={
+                            movie.poster_path
+                            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                            : NoImage
+                        }
+                        movieId={movie.id}
+                        movieName={movie.original_title}
+                    />
+                ))
+            }
+            </Grid>
+            
+            
             <Spinner/>
             <LoadMoreBtn/>
         </>
